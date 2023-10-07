@@ -1,0 +1,21 @@
+#include <iostream>
+ 
+using namespace std;
+ 
+int main(int argc, char *argv[])
+{
+	int N,i;
+	cout << "Vvedi kolvo elementov v massive: ";
+	cin >> N;
+	int a[N];
+	for(i=0;i<N;i++)
+	{
+		cout << "Vvod elementa a[" << i << "]=";
+		cin >> a[i];
+	}
+	for(i=0;i<N;i++)
+	{
+		cout << "a[" << i << "]=" << a[i] << endl;
+	}
+	return 0;
+}

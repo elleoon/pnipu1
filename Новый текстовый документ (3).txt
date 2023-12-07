@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	int n;
+	double u = 1;
+	int i = 1;
+	double S = 0;
+	double x;
+
+	cout << "Введите кол-во элементов в последовательности: ";
+	cin >> n;
+	cout << "Введите переменную x: ";
+	cin >> x;
+
+
+	while (i <= n) {
+		S = S + u;
+		u = u * x / i;
+		i++;
+	}
+	cout << "Значение многочлена: " << S;
+
+	return 0;
+
+}

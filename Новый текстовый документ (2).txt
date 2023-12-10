@@ -3,47 +3,35 @@ using namespace std;
 
 int main() {
 	setlocale(LC_ALL, "Rus");
-
 	int N;
-	int s = 1;
-	int j = 1;
-	int i = 2;
-	int max;
-	int a;
-
-	cout << "Введите количество элементов в послдовательности: ";
 	cin >> N;
-	while (N < 0) {
-		cout << "Ошибка";
+	while ((N<=3) || (N % 2 == 0)) {
+		cout << "Ошибка. Введите нечётное N>3";
+			
 		cin >> N;
+}
+	int p = (N - 1) / 2;
+	int z = 1;
+	cout << endl;
 
-	}
-	cout << "Введите первый элемент последовательности: ";
-	cin >> a;
-	max = a;
-
-	while (i <= N) {
-		cout << "Введите следующий элемент последовательности, с которым будем сравниваться предыдущий: ";
-		cin >> a;
-		if (a > max) {
-
-			max = a;
-			j = i;
-			s = 1;
+	for (int i = 1; i <= (N + 1) / 2; i++) {
+		for (int j =1; j <=p; j++)
+		{
+			cout << " ";
 		}
-		
-		else
-			if (a == max) {
-				s = s + 1;
-			}
-		
-		i++;
+		p = p - 1;
+	
 
-		
+		for (int j = 1; j <= z; j++)
+		{
+			cout << "*";
+		}
+		z = z + 2;
+		cout << endl;
+
 	}
-	cout << "Максимальный элемент в последовательности: " << max << endl;
-	cout << "Кол-во элментов совпадающих с максимальным: " << s << endl;
-	cout << "Номер максимального элемента: " << j << endl;
+	
 
 	return 0;
+}
 

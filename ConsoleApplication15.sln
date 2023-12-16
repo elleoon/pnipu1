@@ -1,31 +1,53 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.7.34221.43
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication15", "ConsoleApplication15\ConsoleApplication15.vcxproj", "{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Debug|x64.ActiveCfg = Debug|x64
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Debug|x64.Build.0 = Debug|x64
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Debug|x86.ActiveCfg = Debug|Win32
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Debug|x86.Build.0 = Debug|Win32
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Release|x64.ActiveCfg = Release|x64
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Release|x64.Build.0 = Release|x64
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Release|x86.ActiveCfg = Release|Win32
-		{A9023EBA-60E6-48E0-969D-5B0F29E65DBC}.Release|x86.Build.0 = Release|Win32
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A5872EFB-1F3C-4C5E-9938-2AF05B59494E}
-	EndGlobalSection
-EndGlobal
+﻿#include <iostream>
+#include <cmath>
+#include <math.h>
+
+using namespace std;
+
+const double epsilon = 1e-6;
+double f(double x) {
+	return acos(x) - sqrt(1 - 0.3 * pow(x, 3));
+}
+
+double f1(double x) {
+	return -1 / sqrt(1 - pow(x, 2)) + 0.9 * pow(x, 2) / 2 * sqrt(1 - 0.3 * pow(x, 3));
+}
+
+
+double f2(double x) {
+	return -x / sqrt(1 - pow(x, 2)) * (1 - pow(x, 2)) + (36 * x * sqrt(10) * abs(10 - 3 * pow(x, 3)) + 81 * pow(x, 4) * sqrt(10)) / 40 * sqrt(10 - 3 * pow(x, 3)) * (10 - 3 * pow(x, 3));
+}
+	
+	 
+
+
+
+int main() {
+	setlocale(LC_ALL,"Rus");
+	double a;
+	double b;
+	double c;
+
+	
+	
+
+
+	cout << "Введите а: ";
+	cin >> a;
+
+	cout <<"Введите b: ";
+	cin >> b;
+
+	c = (a + b) / 2;
+
+	if (f(a) * f2(a) > 0)
+		a = c;
+	else
+		b = c;
+
+	while (abs(f(c)) >= epsilon) {
+		c = c - (f(c) / f1(c));
+
+	}
+	cout<<"X равен: " << c;
+	return 0;

@@ -1,0 +1,38 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+const int N = 10;
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	int max;
+	int S = 1;
+	int j;
+	int a[N];
+	for (int i = 0; i < N; i++) {
+		a[i] = rand() % 200 -  100 ;
+	}
+	max = a[0];
+
+	for (int i = 1; i < N; i++) {
+		if (max < a[i]) {
+			max = a[i];
+			S = 1;
+			j = i + 1;
+		}
+		else if (max == a[i]) {
+			S = S + 1;
+		}
+
+	}
+	for (int i = 0; i < N; i++) {
+		cout << a[i] << " ";
+
+	}
+	cout<<endl;
+	cout << "Максимальный элемент в последовательности: " << max << endl;
+	cout << "Кол-во совпадающих элементов с максимальным: " << S << endl;
+	cout << "Номер максимального элемента: " << j;
+
+	return 0;
+}

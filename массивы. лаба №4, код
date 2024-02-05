@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+const int N = 10;
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	int a[N];
+
+	for (int i = 0; i < N; i++) {
+		a[i] = rand() % 101;
+		cout << a[i] << " ";
+	}
+	cout << endl;
+
+	int K;
+	
+	K = rand() % 10;
+	cout << "Индекс элемента: " << K;
+	cout << endl;
+	cout << "Массив начиная с K до K-1(влево): " << endl;
+	for (int i = N + K; i > K-2; i--) {
+		cout << a[i % N]<<" ";
+	}
+	cout << endl;
+
+	K = rand() % 10;
+	cout << "Индекс элемента: " << K;
+	cout << endl;
+	cout << "Массив начиная с K до K+1(вправо) + первый и три последних элемента: " << endl;
+	
+	for (int i = K; i < K + N+2; i++) {
+		cout << a[i % N] << " ";
+	}
+	cout << a[0]<<" "<< a[N - 3] << " " << a[N - 2] << " "<< a[N - 1];
+
+	return 0;
+	
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+
+int func(int N) {
+	if (N == 0) {
+		return 0;
+	}
+	if (N == 1) {
+		return 1;
+	}
+
+	return func(N - 1) + func(N - 2);
+}
+
+
+int main() {
+	int upper;
+	setlocale(LC_ALL, "Rus");
+	cout << "Введите сколько будет чисел: ";
+	cin >> upper;
+	for (int N = 0; N < upper; N++) {
+		cout << func(N) << " ";
+	}
+
+	return 0;
+}

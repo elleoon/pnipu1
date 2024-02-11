@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+double func(double x, int N) {
+	return pow(-1, N) * (pow(x, 2 * N + 1) / (2 * N + 1));
+}
+
+double sum(double x, int N) {
+	if (N == 0) {
+		return x;
+	}
+	else {
+		return sum(x, N - 1) + func(x, N);
+
+	}
+}
+
+int main()
+{
+	setlocale(LC_ALL, "Rus");
+	double x;
+	int N;
+	cout << "Введите x: ";
+	cin >> x;
+	cout << endl;
+	cout << "Введите кол-во чисел в ряде: ";
+	cin >> N;
+	cout << endl;
+
+	cout << "Сумма ряда равна = " << sum(x, N);
+
+
+	return 0;
+
+}

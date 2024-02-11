@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	double sum = 0;
+	double x;
+	int N;
+	cout << "Введите x: ";
+	cin >> x;
+	cout << endl;
+	cout << "Введите кол-во чисел в ряде: ";
+	cin >> N;
+	cout << endl;
+
+
+	for (int k = 0; k <=N; k++) {
+		sum = sum + (pow(-1, k) * (pow(x, 2 * k + 1) / (2 * k + 1)));
+		
+
+
+	}
+
+	cout << sum;
+	return 0;
+}

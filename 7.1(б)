@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int stroka(const string& str2) {
+    int count = 0;
+    int i = 0;
+    int N = str2.size();
+
+    while (i < N) {
+        int j = i + 1;
+        int temp = j;
+
+        while (j < N && str2[j] != ' ') {
+            temp = j;
+            j++;
+        }
+
+        if (temp < N && str2[i] == str2[temp]) {
+            count++;
+        }
+
+        i = j + 1;
+    }
+
+    return count;
+}
+
+int main() {
+    setlocale(LC_ALL, "Rus");
+    string str1;
+    getline(cin, str1);
+
+    int count = stroka(str1);
+    cout << "Количество слов, начинающих и заканчивающихся на одну и ту же букву: " << count << endl;
+
+    return 0;
+}

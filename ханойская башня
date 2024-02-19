@@ -1,27 +1,39 @@
 #include <iostream>
 using namespace std;
-
+int steps = 0;
 void hanoi(int N, int start, int end) {
+	steps++;
+	cout << "Вызываем рекурсию с параметрами: ";
+	cout << "hanoi: " << N << " " << start << " " << end << " " << endl;
 	if (N == 1) {
+		cout << "Вторая ветка. Позиции башен: " << endl << "Стартовая: " << start << " Конечная: " << end << endl;
 		cout << "Перекладываем " << N << " диск " << " c " << start << " на " << end << endl;
+		
 
 	}
 	else {
 		int temp = 6 - start - end;
+		cout << "Первая ветка. Позиции башен: " <<endl << "Стартовая: " << start << " Вспомогательная: " << temp << " Конечная: " << end << endl;
 		hanoi(N - 1, start, temp);
+		cout << "Прозошёл возврат рекурсии: "<<"hanoi: " << N << " " << start << " " << end << " " << endl;
 		cout << "Перекладываем " << N << " диск " << " c " << start << " на " << end << endl;
 		hanoi(N - 1, temp, end);
-
 	}
-
+	
 }
 
 int main() {
 	setlocale(LC_ALL, "Rus");
 	int N;
-	cout << "Введите кол-во дисков на стержне: ";
+	int start;
+	int end;
+	cout << "Введите кол-во дисков на стержне: " ;
 	cin>> N;
-
-	hanoi(N, 1, 3);
+	cout << "Введите номер начального стержня: ";
+	cin >> start;
+	cout << "Введите номер конечного стержня: ";
+	cin >> end;
+	hanoi(N, start, end);
+	cout <<"Кол-во итераций: "<< steps;
 	return 0;
 }

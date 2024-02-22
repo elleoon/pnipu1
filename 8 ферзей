@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+const int N = 8;
+int doska[N][N]; //Создаем массив doska размером 8x8, который представляет шахматную доску.
+int count = -1; //Создаём счетчик, который будет считать кол-во итераций 
+
+void resetQ(int i, int j) { //Функция resetQ, которая убирает ферзей, если последующий ход невозможен
+	for (int k = 0; k < N; k++) {
+		--doska[k][j];
+		--doska[i][k];
+		int d = j - i + k; 
+		if (d >= 0 && d < 8)
+			--doska[k][d];
+		d = j + i - k;
+		if (d >= 0 && d < 8)
+			--doska[k][d];
+	}
+	doska[i][j] = 0;
+
+
+}
+
+void setQ(int i, int j) { //Функция setQ, которая занимается расстановкой ферзей
+	for (int k = 0; k < N; k++) {
+		++doska[k][j];
+		++doska[i][k];
+		int d = j - i + k;
+		if (d >= 0 && d < 8)
+			++doska[k][d];
+
+		d = j + i - k;
+		if (d >= 0 && d < 8)
+			++doska[k][d];
+	}
+	doska[i][j] = -1;
+
+
+}
+
+bool tryQ(int i) { //Создаем функцию tryQ(), которая рекурсивно пытается расставить ферзей на шахматной доске.
+	::count++;
+	cout << endl;
+	cout << "Итерация #" << ::count + 1 << endl;
+	for (int i = 0; i < N; i++) { //Вывод каждой итерации на экран 
+		for (int j = 0; j < N; j++) {
+			if (doska[i][j] >= 0) {
+				cout << "-";
+
+			}
+			else cout << "Q";
+
+		}
+		cout << endl;
+
+	}
+
+	bool result = false;
+	for (int j = 0; j < N; j++) {
+		if (doska[i][j] == 0) {
+			setQ(i, j);
+			if (i == 7)
+				result = true;
+
+			else
+				if (!(result = tryQ(i + 1)))
+					resetQ(i, j);
+		}
+		if (result == true)
+			break;
+
+	}
+	return result;
+
+}
+int main() {
+	setlocale(LC_ALL, "Rus");
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++)
+			doska[i][j] = 0;
+	} // Заполняем шахмотную доску 0
+	tryQ(0);
+	cout << endl;
+	cout << "Итерация #" << ::count + 2 << endl;
+	for (int i = 0; i < N; i++) { //Вывод правильного решения на экран 
+		for (int j = 0; j < N; j++) {
+			if (doska[i][j] == -1) {
+				cout << "Q";
+			}
+			else cout << "-";
+
+		}
+		cout << endl;
+	}
+	return 0;
+}

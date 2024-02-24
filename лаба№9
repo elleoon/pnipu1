@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "Rus");
+    ifstream file1("f1.txt");
+    ofstream file2("f2.txt");
+    string bigmass[100];
+    int k=0;
+    while (file1.eof() == 0) {
+        int j = 0;
+        string str;
+        getline(file1, str);
+        string mass[100];
+        for (int i = 0; i < str.size(); i++) {
+            if (str[i] != ' ') {
+                mass[j] += str[i];
+            }
+            else j++;
+        }
+
+        bool flag = false;
+        for (int i = 1; i <= j; i++) {
+            if (mass[0] == mass[i]) {
+                flag = true;
+                break;
+            }
+        }
+
+        if (flag == true) {
+            file2 << str << endl;
+            bigmass[k] = str;
+            cout << bigmass[k] << endl;
+            k++;
+        }
+    }
+   
+    file1.close();
+    file2.close();
+    string mass1 = "bcdfghjklmnpqrstvwxz";
+    string str2=bigmass[k-1];
+    int count=0;
+    for (int i = 0; i < str2.size(); i++) {
+        for (int j = 0; j < mass1.size(); j++) {
+            if (str2[i] == mass1[j]) {
+                count = count + 1;
+                break;
+            }
+        }
+    }
+    cout <<"Кол-во согласных в строке: " << count;
+
+    return 0;
+}

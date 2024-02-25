@@ -1,0 +1,88 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+struct avtomobil {
+    string marka;
+    string sernomer;
+    string regnomer;
+    int god;
+
+    void info(string m, string s, string r, int g) {
+        marka = m;
+        sernomer = s;
+        regnomer = r;
+        god = g;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "Rus");
+    system("chcp 1275");
+    system("cls");
+
+    int kol_avto;
+    avtomobil mass[50];
+
+    cout << "Введите кол-во автомобилей: ";
+    cin >> kol_avto;
+
+    for (int i = 0; i < kol_avto; i++) {
+        string m, s, r;
+        int g;
+        cout << "Введите: марку, серийный номер, регистрационный номер, год выпуска автомобиля: " << i + 1 << endl;
+        cin >> m >> s >> r >> g;
+
+        mass[i].info(m, s, r, g);
+    }
+
+    int zmass[] = { 0, 1, 2 };
+
+    bool f = false;
+    int zreg;
+    string reg;
+
+    cout << "Введите рег.номер после которого добавить элемент ";
+    cin >> reg;
+
+    for (int i = 0; i < kol_avto; i++) {
+        if (mass[i].regnomer == reg) {
+            zreg = i + 1;
+            f = true;
+        }
+    }
+
+    if (f == true) {
+        for (int i = kol_avto; i > zreg; i--) {
+            mass[i] = mass[i - 1];
+        }
+
+        string m1, s1, r1;
+        int g1;
+
+        cout << "Введите: марку, серийный номер, регистрационный номер, год выпуска нового автомобиля: " << endl;
+        cin >> m1 >> s1 >> r1 >> g1;
+
+        mass[zreg].info(m1, s1, r1, g1);
+        kol_avto = kol_avto + 1;
+
+        ofstream f1("f1.txt");
+
+        for (int i = 0; i < kol_avto; i++) {
+            bool fl = true;
+
+            for (int j = 0; j < 3; j++) {
+                if (i == zmass[j]) {
+                    fl = false;
+                }
+            }
+
+            if (fl) {
+                f1 << mass[i].marka << " " << mass[i].sernomer << " " << mass[i].regnomer << " " << mass[i].god << endl;
+            }
+        }
+        f1.close();
+        return 0;
+    }
+}

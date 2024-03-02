@@ -1,0 +1,43 @@
+#include <iostream>
+#include <string>
+using namespace std;
+string* deletestroka(string* string2, int a, int k) {
+    string* newstring = new string[a - 1];
+
+    for (int i = 0; i < k; i++) {
+        newstring[i] = string2[i];
+    }
+
+    for (int i = k; i < a - 1; i++) {
+        newstring[i] = string2[i + 1];
+    }
+
+    delete[] string2;
+
+    return newstring;
+}
+
+int main()
+{
+    setlocale(LC_ALL, "Rus");
+    system("chcp 1251");
+    system("cls");
+    int a;
+    cout << "Введите размер массива: ";
+    cin >> a;
+    string* string1 = new string[a];
+    for (int i = 0; i < a; i++) {
+        cout << "Введитие " << i + 1 << " строку: ";
+        cin>>string1[i];
+    }
+    int k;
+    cout << "Введите номер строки, которую стоит удалить: ";
+    cin >> k;
+    k--;
+    string1 = deletestroka(string1, a, k);
+    for (int i = 0; i < a - 1; i++) {
+        cout << string1[i] << endl;
+    }
+    delete[] string1;
+    return 0;
+}

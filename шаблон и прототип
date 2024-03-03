@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+void foo();// Прототип функции, который позваляет работать с функцией в любой точке программы
+
+template <typename T> // Шаблон функции позволяет работать с переменными, у которых разный тип данных
+T Sum(T a, T b) {
+	return a+b;
+}
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	foo();
+
+	int a, b;
+	a = 5;
+	b = 9;
+	cout << "Сумма целочисленных переменных = " << Sum(a, b) << endl;
+
+	double c, d;
+	c = 10.25;
+	d = 23.44;
+	cout << "Сумма десятичных переменных с типом дабл = " << Sum(c, d) << endl;
+	return 0;
+}
+
+void foo() {
+	cout << "Я функциия, меня вызвали!" << endl;
+}

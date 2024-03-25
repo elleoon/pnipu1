@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+
+class ArifmProgress {
+private:
+	double first;
+	double second;
+	double poww(double x, double y) {
+		cout << "Возводим " << x << " в степень: " << y << endl;
+		double c = pow(x, y);
+		return c;
+	}
+public:
+	void SetFirst(double x) {
+		this->first = x;
+		cout << "a0: " << first << endl;
+	}
+	void SetSecond(double y) {
+		this->second = y;
+		cout << "r: " << second << endl;
+	}
+	double element(double j) {
+		cout << "a0 ( " << first << " )" << " мы умножаем на следующее действие: " << endl;
+		return first * poww(second, j);
+	}
+};
+
+int main() {
+	setlocale(LC_ALL, "Rus");
+	ArifmProgress prog;
+	prog.SetFirst(4);
+	prog.SetSecond(3);
+	cout << "Ответ: " << prog.element(2) << endl;
+	
+	return 0;
+}
